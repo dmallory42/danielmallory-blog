@@ -1,6 +1,7 @@
-# danielmalloryblog-site
+# danielmallory-blog
 
-Custom code for [danielmalloryblog.wpcomstaging.com](https://danielmalloryblog.wpcomstaging.com), deployed via WordPress.com GitHub Deployments.
+Custom code for [danielmallory.blog](https://danielmallory.blog) (currently at
+danielmalloryblog.wpcomstaging.com), deployed via WordPress.com GitHub Deployments.
 
 ## Structure
 
@@ -18,7 +19,7 @@ are untouched.
 Requires Docker Desktop and Node.js.
 
 ```bash
-npx @wordpress/env start   # site at http://localhost:8888 (admin/password)
+npx @wordpress/env start   # site at http://localhost:8891 (admin/password)
 npx @wordpress/env stop
 ```
 
