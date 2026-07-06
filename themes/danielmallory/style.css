@@ -12,6 +12,24 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: danielmallory
 */
 
+/* Pin the footer to the bottom of short pages: the site wrapper becomes
+   a full-height column and main soaks up the slack. */
+body {
+	min-height: 100vh;
+	min-height: 100svh;
+}
+
+.wp-site-blocks {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100svh;
+}
+
+.wp-site-blocks > main {
+	flex-grow: 1;
+}
+
 /* Links: ink text, accent underline — color swaps on hover. */
 a {
 	text-decoration-color: var(--wp--preset--color--accent);
