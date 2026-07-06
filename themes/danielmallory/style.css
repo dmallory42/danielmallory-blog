@@ -198,28 +198,51 @@ a {
 	}
 }
 
-/* Dark mode: the same identity with the lights off. Follows the system
-   preference; the four semantic palette variables carry everything. */
+/* Dark mode: the same identity with the lights off. Light by default;
+   the masthead toggle adds .dm-dark on <html> and the four semantic
+   palette variables carry everything. */
 :root {
-	color-scheme: light dark;
+	color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-	body {
-		--wp--preset--color--paper: #14120F;
-		--wp--preset--color--ink: #E9E5DD;
-		--wp--preset--color--accent: #3FA3CC;
-		--wp--preset--color--faded: #9A948A;
-	}
+:root.dm-dark {
+	color-scheme: dark;
+}
 
-	.wp-block-code {
-		background: #201D18;
-		border-color: #2E2A23;
-	}
+.dm-dark body {
+	--wp--preset--color--paper: #14120F;
+	--wp--preset--color--ink: #E9E5DD;
+	--wp--preset--color--accent: #3FA3CC;
+	--wp--preset--color--faded: #9A948A;
+}
 
-	:not(pre) > code {
-		background: #201D18;
-	}
+.dm-dark .wp-block-code {
+	background: #201D18;
+	border-color: #2E2A23;
+}
+
+.dm-dark :not(pre) > code {
+	background: #201D18;
+}
+
+/* The masthead's little switch: a moon in daylight, a sun in the dark. */
+.dm-scheme-toggle {
+	background: none;
+	border: none;
+	padding: 0.25rem;
+	font-size: 1.25rem;
+	line-height: 1;
+	color: inherit;
+	cursor: pointer;
+}
+
+.dm-scheme-toggle:hover {
+	color: var(--wp--preset--color--accent);
+}
+
+.dm-scheme-toggle:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

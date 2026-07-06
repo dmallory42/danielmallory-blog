@@ -20,6 +20,22 @@ add_action(
 			"console.log('%cthe footer never ends','color:#006994;font-style:italic');"
 		);
 
+		// The masthead's moon/sun switch.
+		wp_add_inline_script(
+			'danielmallory-console',
+			"document.addEventListener('DOMContentLoaded',function(){" .
+			"var b=document.querySelector('.dm-scheme-toggle');if(!b){return;}" .
+			"var root=document.documentElement;" .
+			"function sync(){var dark=root.classList.contains('dm-dark');" .
+			"b.textContent=dark?'\\u2600':'\\u263E';" .
+			"b.setAttribute('aria-pressed',dark?'true':'false');" .
+			"var m=document.querySelector('meta[name=\"theme-color\"]');" .
+			"if(m){m.setAttribute('content',dark?'#14120F':'#FBFAF7');}}" .
+			"b.addEventListener('click',function(){root.classList.toggle('dm-dark');" .
+			"try{localStorage.setItem('dm-scheme',root.classList.contains('dm-dark')?'dark':'light');}catch(e){}" .
+			"sync();});sync();});"
+		);
+
 		// The footer's infinity, asked directly, unfolds a certain note
 		// found in a certain manor.
 		wp_add_inline_script(
@@ -44,12 +60,19 @@ add_action(
 	}
 );
 
-// Tint the browser chrome to match the page.
+// Modern browsers render emoji (and our ☾/☀ toggle glyphs) natively; the
+// legacy compat script replaces them with s.w.org images and breaks the
+// toggle's textContent handling.
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+// Tint the browser chrome, and restore a saved dark-mode choice before
+// first paint so there is no light flash.
 add_action(
 	'wp_head',
 	function () {
-		echo '<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBFAF7">' . "\n";
-		echo '<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14120F">' . "\n";
+		echo '<meta name="theme-color" content="#FBFAF7">' . "\n";
+		echo "<script>(function(){try{if(localStorage.getItem('dm-scheme')==='dark'){document.documentElement.classList.add('dm-dark');var m=document.querySelector('meta[name=\"theme-color\"]');if(m){m.setAttribute('content','#14120F');}}}catch(e){}})();</script>" . "\n";
 	},
 	1
 );
