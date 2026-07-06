@@ -132,6 +132,7 @@ a {
 	opacity: 0;
 	overflow: hidden;
 	text-align: center;
+	color: #FBFAF7;
 	transition: max-height 1.2s ease, opacity 0.5s ease;
 	/* The water darkens on the way down. */
 	background: linear-gradient(
@@ -157,7 +158,8 @@ a {
 	width: 84px;
 	height: 84px;
 	margin: 600vh auto 0.25rem;
-	color: var(--wp--preset--color--paper);
+	/* Fixed, not var(paper): the abyss is dark in both color schemes. */
+	color: #FBFAF7;
 }
 
 .dm-spiral path {
@@ -193,6 +195,30 @@ a {
 	}
 	50% {
 		transform: translateY(-3px);
+	}
+}
+
+/* Dark mode: the same identity with the lights off. Follows the system
+   preference; the four semantic palette variables carry everything. */
+:root {
+	color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		--wp--preset--color--paper: #14120F;
+		--wp--preset--color--ink: #E9E5DD;
+		--wp--preset--color--accent: #3FA3CC;
+		--wp--preset--color--faded: #9A948A;
+	}
+
+	.wp-block-code {
+		background: #201D18;
+		border-color: #2E2A23;
+	}
+
+	:not(pre) > code {
+		background: #201D18;
 	}
 }
 

@@ -44,6 +44,16 @@ add_action(
 	}
 );
 
+// Tint the browser chrome to match the page.
+add_action(
+	'wp_head',
+	function () {
+		echo '<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBFAF7">' . "\n";
+		echo '<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14120F">' . "\n";
+	},
+	1
+);
+
 // A note for the view-source crowd.
 add_action(
 	'wp_head',
