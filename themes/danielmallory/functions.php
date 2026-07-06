@@ -77,6 +77,33 @@ add_action(
 	1
 );
 
+// Open Graph tags so shared links get a proper preview card.
+add_action(
+	'wp_head',
+	function () {
+		$title = is_singular() ? get_the_title() : get_bloginfo( 'name' );
+		$url   = is_singular() ? get_permalink() : home_url( '/' );
+		$type  = is_singular( 'post' ) ? 'article' : 'website';
+		$desc  = is_singular() ? get_the_excerpt() : get_bloginfo( 'description' );
+
+		printf( '<meta property="og:site_name" content="%s">' . "\n", esc_attr( get_bloginfo( 'name' ) ) );
+		printf( '<meta property="og:title" content="%s">' . "\n", esc_attr( $title ) );
+		printf( '<meta property="og:type" content="%s">' . "\n", esc_attr( $type ) );
+		printf( '<meta property="og:url" content="%s">' . "\n", esc_url( $url ) );
+		if ( $desc ) {
+			printf( '<meta property="og:description" content="%s">' . "\n", esc_attr( wp_strip_all_tags( $desc ) ) );
+		}
+		printf( '<meta property="og:image" content="%s">' . "\n", esc_url( get_theme_file_uri( 'assets/og-card.png' ) ) );
+		echo '<meta property="og:image:width" content="1200">' . "\n";
+		echo '<meta property="og:image:height" content="630">' . "\n";
+		echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+	},
+	5
+);
+
+// The theme prints its own Open Graph tags; stop Jetpack duplicating them.
+add_filter( 'jetpack_enable_open_graph', '__return_false' );
+
 // A note for the view-source crowd.
 add_action(
 	'wp_head',
