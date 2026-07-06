@@ -120,7 +120,7 @@ a {
 }
 
 .dm-note-reveal.is-open {
-	max-height: 1150vh;
+	max-height: 700vh;
 	opacity: 1;
 }
 
@@ -129,7 +129,7 @@ a {
 	display: block;
 	width: 84px;
 	height: 84px;
-	margin: 1000vh auto 0.25rem;
+	margin: 600vh auto 0.25rem;
 	color: var(--wp--preset--color--paper);
 }
 
