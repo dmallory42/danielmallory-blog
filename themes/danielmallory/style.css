@@ -75,3 +75,49 @@ figcaption {
 	text-align: left;
 	margin-top: 0.5rem;
 }
+
+/* Motion: gentle and brief. Content breathes in on arrival, links ease
+   between colors, and the footer's infinity floats — endlessly, of course. */
+main {
+	animation: dm-enter 0.45s ease-out both;
+}
+
+@keyframes dm-enter {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+a {
+	transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.dm-infinity {
+	display: inline-block;
+	animation: dm-float 5s ease-in-out infinite;
+}
+
+@keyframes dm-float {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-3px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	main,
+	.dm-infinity {
+		animation: none;
+	}
+
+	a {
+		transition: none;
+	}
+}
