@@ -12,7 +12,7 @@
 			"palette": [
 				{ "slug": "paper", "name": "Paper", "color": "#FBFAF7" },
 				{ "slug": "ink", "name": "Ink", "color": "#1C1A17" },
-				{ "slug": "orange", "name": "Penguin Orange", "color": "#E4571E" },
+				{ "slug": "accent", "name": "Klein Blue", "color": "#002FA7" },
 				{ "slug": "faded", "name": "Faded Ink", "color": "#6E675E" }
 			]
 		},
@@ -81,7 +81,7 @@
 				},
 				":hover": {
 					"color": {
-						"text": "var:preset|color|orange"
+						"text": "var:preset|color|accent"
 					}
 				}
 			}
@@ -108,7 +108,7 @@
 			"core/quote": {
 				"border": {
 					"left": {
-						"color": "var:preset|color|orange",
+						"color": "var:preset|color|accent",
 						"width": "3px",
 						"style": "solid"
 					}
