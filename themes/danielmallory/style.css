@@ -76,6 +76,12 @@ figcaption {
 	margin-top: 0.5rem;
 }
 
+/* Post numbers (added by the dm-blog plugin inside the date block). */
+.dm-post-number {
+	color: var(--wp--preset--color--accent);
+	font-weight: 700;
+}
+
 /* Motion: gentle and brief. Content breathes in on arrival, links ease
    between colors, and the footer's infinity floats — endlessly, of course. */
 main {

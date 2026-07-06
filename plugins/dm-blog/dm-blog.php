@@ -41,3 +41,44 @@ add_action(
 		printf( '<link rel="author" href="%s">' . "\n", esc_url( home_url( '/humans.txt' ) ) );
 	}
 );
+
+/**
+ * Number posts like issues of a zine: "№ 3 · July 6, 2026".
+ *
+ * The number is the post's position in publish order, prepended to the
+ * post-date block on posts.
+ */
+add_filter(
+	'render_block_core/post-date',
+	function ( $content, $block, $instance ) {
+		$post_id = $instance->context['postId'] ?? 0;
+		if ( ! $post_id || 'post' !== get_post_type( $post_id ) || 'publish' !== get_post_status( $post_id ) ) {
+			return $content;
+		}
+
+		static $ids = null;
+		if ( null === $ids ) {
+			$ids = get_posts(
+				array(
+					'post_type'   => 'post',
+					'post_status' => 'publish',
+					'orderby'     => 'date',
+					'order'       => 'ASC',
+					'numberposts' => -1,
+					'fields'      => 'ids',
+				)
+			);
+		}
+
+		$position = array_search( $post_id, $ids, true );
+		if ( false === $position ) {
+			return $content;
+		}
+
+		$badge = sprintf( '<span class="dm-post-number">&#8470; %d</span> · ', $position + 1 );
+
+		return preg_replace( '/(<div[^>]*>)/', '$1' . $badge, $content, 1 );
+	},
+	10,
+	3
+);
