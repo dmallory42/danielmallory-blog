@@ -26,14 +26,29 @@ add_action(
 					'name'          => 'Projects',
 					'singular_name' => 'Project',
 				),
-				'public'       => true,
-				'show_in_rest' => true,
-				'menu_icon'    => 'dashicons-hammer',
-				'supports'     => array( 'title', 'editor', 'excerpt' ),
-				'has_archive'  => false,
-				'rewrite'      => array( 'slug' => 'projects' ),
+				'public'              => true,
+				'show_in_rest'        => true,
+				'exclude_from_search' => true,
+				'menu_icon'           => 'dashicons-hammer',
+				'supports'            => array( 'title', 'editor', 'excerpt' ),
+				'has_archive'         => false,
+				'rewrite'             => array( 'slug' => 'projects' ),
 			)
 		);
+	}
+);
+
+/**
+ * Projects have no page of their own — the shelf on the homepage is the
+ * whole story, so single-project URLs bounce home.
+ */
+add_action(
+	'template_redirect',
+	function () {
+		if ( is_singular( 'project' ) ) {
+			wp_safe_redirect( home_url( '/' ), 301 );
+			exit;
+		}
 	}
 );
 
