@@ -11,3 +11,38 @@ License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: danielmallory
 */
+
+/* Links: ink text, orange underline — color swaps on hover. */
+a {
+	text-decoration-color: var(--wp--preset--color--orange);
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 3px;
+}
+
+a:hover {
+	text-decoration-color: currentColor;
+}
+
+/* Separators: flat orange band, no washed-out opacity. */
+.wp-block-separator {
+	opacity: 1;
+	border: none;
+	height: 3px;
+}
+
+/* Code blocks: quiet card on paper. */
+.wp-block-code {
+	background: #F3F0E9;
+	border: 1px solid #E6E1D5;
+	border-radius: 4px;
+	padding: 1rem 1.25rem;
+	overflow-x: auto;
+}
+
+/* Inline code. */
+:not(pre) > code {
+	background: #F3F0E9;
+	border-radius: 3px;
+	padding: 0.1em 0.35em;
+	font-size: 0.9em;
+}

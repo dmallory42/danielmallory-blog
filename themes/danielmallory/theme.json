@@ -7,13 +7,113 @@
 			"contentSize": "42rem",
 			"wideSize": "72rem"
 		},
+		"color": {
+			"defaultPalettes": false,
+			"palette": [
+				{ "slug": "paper", "name": "Paper", "color": "#FBFAF7" },
+				{ "slug": "ink", "name": "Ink", "color": "#1C1A17" },
+				{ "slug": "orange", "name": "Penguin Orange", "color": "#E4571E" },
+				{ "slug": "faded", "name": "Faded Ink", "color": "#6E675E" }
+			]
+		},
 		"typography": {
-			"fluid": true
+			"fluid": true,
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{
+					"slug": "sans",
+					"name": "Hanken Grotesk",
+					"fontFamily": "\"Hanken Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Hanken Grotesk",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"src": [ "file:./assets/fonts/hanken-grotesk-variable.woff2" ]
+						},
+						{
+							"fontFamily": "Hanken Grotesk",
+							"fontStyle": "italic",
+							"fontWeight": "100 900",
+							"src": [ "file:./assets/fonts/hanken-grotesk-italic-variable.woff2" ]
+						}
+					]
+				},
+				{
+					"slug": "mono",
+					"name": "Monospace",
+					"fontFamily": "ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "size": "0.875rem", "fluid": false },
+				{ "slug": "medium", "size": "1.0625rem", "fluid": false },
+				{ "slug": "large", "size": "1.375rem", "fluid": { "min": "1.25rem", "max": "1.4375rem" } },
+				{ "slug": "x-large", "size": "1.875rem", "fluid": { "min": "1.625rem", "max": "2rem" } },
+				{ "slug": "xx-large", "size": "2.75rem", "fluid": { "min": "2.125rem", "max": "3rem" } }
+			]
 		}
 	},
 	"styles": {
+		"color": {
+			"background": "var:preset|color|paper",
+			"text": "var:preset|color|ink"
+		},
+		"typography": {
+			"fontFamily": "var:preset|font-family|sans",
+			"fontSize": "var:preset|font-size|medium",
+			"lineHeight": "1.65"
+		},
 		"spacing": {
 			"blockGap": "1.5rem"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontWeight": "800",
+					"lineHeight": "1.15",
+					"letterSpacing": "-0.015em"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|ink"
+				},
+				":hover": {
+					"color": {
+						"text": "var:preset|color|orange"
+					}
+				}
+			}
+		},
+		"blocks": {
+			"core/post-date": {
+				"color": { "text": "var:preset|color|faded" },
+				"typography": { "fontSize": "var:preset|font-size|small" }
+			},
+			"core/site-title": {
+				"typography": { "fontWeight": "800", "letterSpacing": "-0.01em" },
+				"elements": {
+					"link": {
+						"typography": { "textDecoration": "none" }
+					}
+				}
+			},
+			"core/code": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|mono",
+					"fontSize": "0.9rem"
+				}
+			},
+			"core/quote": {
+				"border": {
+					"left": {
+						"color": "var:preset|color|orange",
+						"width": "3px",
+						"style": "solid"
+					}
+				}
+			}
 		}
 	}
 }
