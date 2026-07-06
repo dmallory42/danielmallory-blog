@@ -77,6 +77,17 @@ add_action(
 	1
 );
 
+// Favicon: the spiral. SVG for modern browsers, PNG fallbacks for the rest.
+add_action(
+	'wp_head',
+	function () {
+		printf( '<link rel="icon" href="%s" type="image/svg+xml">' . "\n", esc_url( get_theme_file_uri( 'assets/favicon.svg' ) ) );
+		printf( '<link rel="icon" href="%s" type="image/png" sizes="32x32">' . "\n", esc_url( get_theme_file_uri( 'assets/favicon-32.png' ) ) );
+		printf( '<link rel="apple-touch-icon" href="%s">' . "\n", esc_url( get_theme_file_uri( 'assets/apple-touch-icon.png' ) ) );
+	},
+	4
+);
+
 // Open Graph tags so shared links get a proper preview card.
 add_action(
 	'wp_head',
