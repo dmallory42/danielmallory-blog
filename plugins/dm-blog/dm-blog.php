@@ -38,6 +38,52 @@ add_action(
 );
 
 /**
+ * Each project can carry its GitHub repo path (e.g. "dmallory42/boo"),
+ * rendered as a linked monospace line beneath the project title.
+ */
+add_action(
+	'init',
+	function () {
+		register_post_meta(
+			'project',
+			'dm_repo',
+			array(
+				'type'              => 'string',
+				'single'            => true,
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => function () {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+	}
+);
+
+add_filter(
+	'render_block_core/post-title',
+	function ( $content, $block, $instance ) {
+		$post_id = $instance->context['postId'] ?? 0;
+		if ( ! $post_id || 'project' !== get_post_type( $post_id ) ) {
+			return $content;
+		}
+
+		$repo = get_post_meta( $post_id, 'dm_repo', true );
+		if ( ! $repo ) {
+			return $content;
+		}
+
+		return $content . sprintf(
+			'<p class="dm-repo"><a href="%s">%s</a></p>',
+			esc_url( 'https://github.com/' . $repo ),
+			esc_html( $repo )
+		);
+	},
+	10,
+	3
+);
+
+/**
  * Serve /humans.txt — the old-web tradition of crediting the human.
  */
 add_action(

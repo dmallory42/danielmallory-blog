@@ -85,6 +85,13 @@ figcaption {
 	margin-top: 0.5rem;
 }
 
+/* Project repo paths (added by the dm-blog plugin under project titles). */
+.dm-repo {
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: var(--wp--preset--font-size--small);
+	margin: 0.125rem 0 0;
+}
+
 /* Post numbers (added by the dm-blog plugin inside the date block). */
 .dm-post-number {
 	color: var(--wp--preset--color--accent);
