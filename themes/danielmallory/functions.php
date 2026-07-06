@@ -22,6 +22,21 @@ add_action(
 			"console.log('Hints: select some text · /humans.txt · the footer never ends.');" .
 			"console.log('Source, if you want to cheat: https://github.com/dmallory42/danielmallory-blog');"
 		);
+
+		// The footer's infinity, asked directly, quotes a certain note
+		// found in a certain manor.
+		wp_add_inline_script(
+			'danielmallory-console',
+			"document.addEventListener('DOMContentLoaded',function(){" .
+			"var p=document.querySelector('.dm-infinity');" .
+			"p=p&&p.closest('p');if(!p){return;}" .
+			"var original=p.innerHTML,busy=false;" .
+			"p.addEventListener('click',function(e){" .
+			"if(busy||!e.target.closest('.dm-infinity')){return;}" .
+			"busy=true;p.classList.add('dm-note');p.textContent='does it never end?';" .
+			"setTimeout(function(){p.innerHTML=original;p.classList.remove('dm-note');busy=false;},4000);" .
+			"});});"
+		);
 	}
 );
 

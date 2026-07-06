@@ -97,6 +97,14 @@ a {
 .dm-infinity {
 	display: inline-block;
 	animation: dm-float 5s ease-in-out infinite;
+	cursor: pointer;
+}
+
+/* Asked directly, the infinity answers in handwriting. */
+.dm-note {
+	font-style: italic;
+	font-weight: 400;
+	font-family: "Bradley Hand", "Segoe Script", "Comic Sans MS", cursive;
 }
 
 @keyframes dm-float {
