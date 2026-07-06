@@ -2,13 +2,40 @@
 /**
  * Plugin Name: Daniel Mallory Blog
  * Description: Site functionality for danielmallory.blog.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Author: Daniel Mallory
  * License: GPL-2.0-or-later
  * Text Domain: dm-blog
  */
 
 defined( 'ABSPATH' ) || exit;
+
+/**
+ * Projects — the "things I've built" shelf.
+ *
+ * Title = project name, excerpt = the one-liner shown on the homepage,
+ * content = the longer story (with links) on the project's own page.
+ */
+add_action(
+	'init',
+	function () {
+		register_post_type(
+			'project',
+			array(
+				'labels'       => array(
+					'name'          => 'Projects',
+					'singular_name' => 'Project',
+				),
+				'public'       => true,
+				'show_in_rest' => true,
+				'menu_icon'    => 'dashicons-hammer',
+				'supports'     => array( 'title', 'editor', 'excerpt' ),
+				'has_archive'  => false,
+				'rewrite'      => array( 'slug' => 'projects' ),
+			)
+		);
+	}
+);
 
 /**
  * Serve /humans.txt — the old-web tradition of crediting the human.
