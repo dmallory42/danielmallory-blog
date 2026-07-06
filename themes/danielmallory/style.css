@@ -46,3 +46,11 @@ a:hover {
 	padding: 0.1em 0.35em;
 	font-size: 0.9em;
 }
+
+/* Image captions: quiet, small, left-aligned with the text column. */
+figcaption {
+	color: var(--wp--preset--color--faded);
+	font-size: var(--wp--preset--font-size--small);
+	text-align: left;
+	margin-top: 0.5rem;
+}

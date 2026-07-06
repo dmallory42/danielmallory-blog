@@ -112,6 +112,31 @@
 						"width": "3px",
 						"style": "solid"
 					}
+				},
+				"spacing": {
+					"padding": {
+						"left": "1.5rem"
+					},
+					"margin": {
+						"top": "2rem",
+						"bottom": "2rem"
+					}
+				},
+				"typography": {
+					"fontStyle": "italic",
+					"fontSize": "var:preset|font-size|large",
+					"lineHeight": "1.5"
+				},
+				"elements": {
+					"cite": {
+						"typography": {
+							"fontStyle": "normal",
+							"fontSize": "var:preset|font-size|small"
+						},
+						"color": {
+							"text": "var:preset|color|faded"
+						}
+					}
 				}
 			}
 		}
