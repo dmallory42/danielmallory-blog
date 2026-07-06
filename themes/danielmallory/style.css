@@ -23,20 +23,11 @@ a:hover {
 	text-decoration-color: currentColor;
 }
 
-/* Separators: a small repeating wave, masked so it takes the accent
-   color from the block's background class. */
+/* Separators: flat accent band, no washed-out opacity. */
 .wp-block-separator {
 	opacity: 1;
 	border: none;
-	height: 10px;
-	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
-	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
-	-webkit-mask-repeat: repeat-x;
-	mask-repeat: repeat-x;
-	-webkit-mask-size: 40px 10px;
-	mask-size: 40px 10px;
-	-webkit-mask-position: left center;
-	mask-position: left center;
+	height: 3px;
 }
 
 /* Selecting text dips it in the accent. */
