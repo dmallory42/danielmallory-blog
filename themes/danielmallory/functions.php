@@ -31,8 +31,17 @@ add_action(
 			"var inf=document.querySelector('.dm-infinity');" .
 			"var panel=document.getElementById('dm-note-reveal');" .
 			"if(!inf||!panel){return;}" .
+			"var spiral=panel.querySelector('.dm-spiral');" .
+			"var calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;" .
+			"if(spiral&&'IntersectionObserver' in window){" .
+			"new IntersectionObserver(function(es){es.forEach(function(en){" .
+			"if(en.isIntersecting){spiral.classList.add('is-drawn');}" .
+			"});},{threshold:0.4}).observe(spiral);}" .
 			"function toggle(){var open=panel.classList.toggle('is-open');" .
-			"inf.setAttribute('aria-expanded',open?'true':'false');}" .
+			"inf.setAttribute('aria-expanded',open?'true':'false');" .
+			"if(open&&!calm){setTimeout(function(){" .
+			"window.scrollBy({top:window.innerHeight*0.6,behavior:'smooth'});},250);}" .
+			"if(!open&&spiral){spiral.classList.remove('is-drawn');}}" .
 			"inf.addEventListener('click',toggle);" .
 			"inf.addEventListener('keydown',function(e){" .
 			"if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}" .
