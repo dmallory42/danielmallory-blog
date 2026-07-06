@@ -122,6 +122,8 @@ a {
 .dm-note-reveal.is-open {
 	max-height: 700vh;
 	opacity: 1;
+	/* Swallow the footer band's bottom padding so the dark reaches the edge. */
+	margin-bottom: -1.5rem;
 }
 
 /* The note sits at the bottom of a long, empty descent. */
