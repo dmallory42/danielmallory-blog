@@ -17,10 +17,7 @@ add_action(
 		wp_enqueue_script( 'danielmallory-console' );
 		wp_add_inline_script(
 			'danielmallory-console',
-			"console.log('%c~ ~ ~  you found the engine room  ~ ~ ~','color:#006994;font-weight:700');" .
-			"console.log('This is an easter egg. It is not the only one — how many depends on how you count.');" .
-			"console.log('Hints: select some text · /humans.txt · the footer never ends.');" .
-			"console.log('Source, if you want to cheat: https://github.com/dmallory42/danielmallory-blog');"
+			"console.log('%cthe footer never ends','color:#006994;font-style:italic');"
 		);
 
 		// The footer's infinity, asked directly, unfolds a certain note
