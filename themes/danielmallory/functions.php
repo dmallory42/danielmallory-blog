@@ -115,6 +115,42 @@ add_action(
 // The theme prints its own Open Graph tags; stop Jetpack duplicating them.
 add_filter( 'jetpack_enable_open_graph', '__return_false' );
 
+// Links off the site open in a new tab. Relative, anchor and mailto links
+// have no host, so they are left alone.
+add_filter(
+	'the_content',
+	function ( $content ) {
+		if ( ! class_exists( 'WP_HTML_Tag_Processor' ) || false === strpos( $content, '<a' ) ) {
+			return $content;
+		}
+
+		$host = wp_parse_url( home_url(), PHP_URL_HOST );
+		$tags = new WP_HTML_Tag_Processor( $content );
+
+		while ( $tags->next_tag( 'a' ) ) {
+			$href = $tags->get_attribute( 'href' );
+			if ( ! is_string( $href ) ) {
+				continue;
+			}
+
+			$link_host = wp_parse_url( $href, PHP_URL_HOST );
+			if ( ! $link_host || $link_host === $host ) {
+				continue;
+			}
+
+			$rel = (string) $tags->get_attribute( 'rel' );
+			if ( false === strpos( $rel, 'noopener' ) ) {
+				$rel = trim( $rel . ' noopener' );
+			}
+
+			$tags->set_attribute( 'target', '_blank' );
+			$tags->set_attribute( 'rel', $rel );
+		}
+
+		return $tags->get_updated_html();
+	}
+);
+
 // A note for the view-source crowd.
 add_action(
 	'wp_head',
