@@ -107,6 +107,9 @@
 				}
 			},
 			"core/quote": {
+				"color": {
+					"text": "var:preset|color|faded"
+				},
 				"border": {
 					"left": {
 						"color": "var:preset|color|accent",
