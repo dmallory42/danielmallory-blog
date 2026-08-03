@@ -13,6 +13,7 @@
 				{ "slug": "paper", "name": "Paper", "color": "#FBFAF7" },
 				{ "slug": "ink", "name": "Ink", "color": "#1C1A17" },
 				{ "slug": "accent", "name": "Ocean", "color": "#006994" },
+				{ "slug": "muted", "name": "Muted Ink", "color": "#4A453E" },
 				{ "slug": "faded", "name": "Faded Ink", "color": "#6E675E" }
 			]
 		},
@@ -108,7 +109,7 @@
 			},
 			"core/quote": {
 				"color": {
-					"text": "var:preset|color|faded"
+					"text": "var:preset|color|muted"
 				},
 				"border": {
 					"left": {
