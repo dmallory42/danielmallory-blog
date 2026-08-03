@@ -124,7 +124,7 @@
 				},
 				"typography": {
 					"fontStyle": "italic",
-					"fontSize": "var:preset|font-size|medium",
+					"fontSize": "1.125rem",
 					"lineHeight": "1.6"
 				},
 				"elements": {
