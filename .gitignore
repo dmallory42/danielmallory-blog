@@ -1,3 +1,6 @@
 node_modules/
 .DS_Store
 *.log
+
+# Unpublished writing; the repo root deploys to /wp-content, so keep drafts out.
+drafts/

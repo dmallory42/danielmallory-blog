@@ -39,13 +39,40 @@ add_action(
 );
 
 /**
- * Projects have no page of their own — the shelf on the homepage is the
- * whole story, so single-project URLs bounce home.
+ * Albums — the "Listening" shelf.
+ *
+ * Title = album name, featured image = the cover art, dm_artist = who made it.
+ */
+add_action(
+	'init',
+	function () {
+		register_post_type(
+			'album',
+			array(
+				'labels'              => array(
+					'name'          => 'Albums',
+					'singular_name' => 'Album',
+				),
+				'public'              => true,
+				'show_in_rest'        => true,
+				'exclude_from_search' => true,
+				'menu_icon'           => 'dashicons-format-audio',
+				'supports'            => array( 'title', 'thumbnail' ),
+				'has_archive'         => false,
+				'rewrite'             => array( 'slug' => 'listening' ),
+			)
+		);
+	}
+);
+
+/**
+ * Projects and albums have no page of their own — the shelves on the
+ * homepage are the whole story, so single URLs bounce home.
  */
 add_action(
 	'template_redirect',
 	function () {
-		if ( is_singular( 'project' ) ) {
+		if ( is_singular( array( 'project', 'album' ) ) ) {
 			wp_safe_redirect( home_url( '/' ), 301 );
 			exit;
 		}
@@ -62,6 +89,28 @@ add_action(
 		register_post_meta(
 			'project',
 			'dm_repo',
+			array(
+				'type'              => 'string',
+				'single'            => true,
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => function () {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+	}
+);
+
+/**
+ * Each album carries its artist, shown beneath the cover.
+ */
+add_action(
+	'init',
+	function () {
+		register_post_meta(
+			'album',
+			'dm_artist',
 			array(
 				'type'              => 'string',
 				'single'            => true,
@@ -93,6 +142,25 @@ add_filter(
 			esc_url( 'https://github.com/' . $repo ),
 			esc_html( $repo )
 		);
+	},
+	10,
+	3
+);
+
+add_filter(
+	'render_block_core/post-title',
+	function ( $content, $block, $instance ) {
+		$post_id = $instance->context['postId'] ?? 0;
+		if ( ! $post_id || 'album' !== get_post_type( $post_id ) ) {
+			return $content;
+		}
+
+		$artist = get_post_meta( $post_id, 'dm_artist', true );
+		if ( ! $artist ) {
+			return $content;
+		}
+
+		return $content . sprintf( '<p class="dm-artist">%s</p>', esc_html( $artist ) );
 	},
 	10,
 	3

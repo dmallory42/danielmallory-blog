@@ -92,6 +92,13 @@ figcaption {
 	margin: 0.125rem 0 0;
 }
 
+/* Album artists (added by the dm-blog plugin under album titles). */
+.dm-artist {
+	color: var(--wp--preset--color--faded);
+	font-size: var(--wp--preset--font-size--medium-small);
+	margin: 0.125rem 0 0;
+}
+
 /* Post numbers (added by the dm-blog plugin inside the date block). */
 .dm-post-number {
 	color: var(--wp--preset--color--accent);
