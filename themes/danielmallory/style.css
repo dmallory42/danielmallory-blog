@@ -92,6 +92,13 @@ figcaption {
 	margin: 0.125rem 0 0;
 }
 
+/* Album titles reserve two lines so artist names stay level across a row,
+   whether the title wraps or not. 2.3em is two lines at the 1.15 heading
+   line height. */
+.type-album .wp-block-post-title {
+	min-height: 2.3em;
+}
+
 /* Album artists (added by the dm-blog plugin under album titles). */
 .dm-artist {
 	color: var(--wp--preset--color--faded);
